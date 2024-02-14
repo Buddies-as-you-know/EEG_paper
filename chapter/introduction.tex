@@ -1,0 +1,81 @@
+\section{INTRODUCTION}
+\label{sec:introduction}
+Brain-computer interface (BCI) technology represents a groundbreaking approach, deciphering the brain's motor imagery (MI) to issue commands without necessitating physical movement\cite{benzy2020motor}. This technology is particularly promising as it activates the same neural pathways when imagining a movement like those used during actual movement execution, offering an alternative modality of action for individuals with mobility loss\cite{guillot2009brain}. For example, it opens doors to alternative locomotive methods, such as prosthetic limbs and robotic arms\cite{gupta2020prototype,korik2019decoding,cho2021neurograsp}. Anticipated to reduce fatigue, BCI technology heralds a new paradigm in assistive living\cite{lotze2006motor,mulder2007motor}. Research in MI-EEG is pivotal in advancing medical and assistive technologies, with its progress expected to further catalyze technological innovations.
+
+
+MI represents a critical cognitive process in both neuroscience and sports psychology\cite{bovend2012practical,cryder2023guided}. It involves the mental simulation of a physical action without its actual execution. This process activates the brain regions associated with motor control and planning\cite{henschke2023engaging,munzert2009cognitive} Such activation mirrors the neural patterns observed during the physical performance of the action.
+
+\vspace{3mm}
+
+The significance of MI lies in its application across various fields. In sports, athletes use it to enhance their performance by mentally rehearsing specific skills\cite{cederstrom2021effect,app12199753}. In rehabilitation, it aids individuals with motor impairments in regaining movement capabilities. Furthermore, MI serves as a tool for understanding the neural mechanisms underlying motor control and learning\cite{tong2017motor, choy2023virtual}.
+
+\vspace{3mm}
+The utilization of MI-based EEG classification in a variety of applications,
+such as unmanned aerial vehicle (drone) operation, motorized wheelchairs,
+navigation systems in humanoid robots, and the functioning of artificial limbs,
+necessitates real-time identification that is crucial for the operational efficacy
+of these technologies\cite{zhang2018converting,chaudhary2020flexible,huang2019eeg,dumitrescu2021using}. Particularly in the case of drones and electric vehicles,
+combination of heightened situational awareness and adept operation is
+imperative\cite{liu2020parallel,freitas2019real}. The fidelity of MI-based EEG recognition, requiring both high precision and swift responsiveness, plays a pivotal role due to its direct implications on user safety and the functional proficiency of the technology\cite{liu2017identification}. Thus, enhancement of the reproducibility and reliability of MI-EEG technology is of paramount importance in its development for practical applications.
+
+\vspace{3mm}
+
+This research endeavors to authenticate the reproducibility of motor imagery
+(MI)-based electroencephalography (EEG) datasets and the universality of the
+discrimination algorithm utilized\cite{zhang2018converting,chaudhary2020flexible,huang2019eeg,dumitrescu2021using}. Traditional EEG investigations have
+predominantly concentrated on elevating data precision and optimizing
+electrode placement, exemplified by endeavors to transcend the state-of-the-art
+(SOTA) in discrimination accuracy in BCI competitions etc\cite{du2023recognition,deng2021advanced,xu2019deep,suemitsu2023effects, sharma2023recent}. Nonetheless, within practical environments, the emphasis shifts to the steadfastness of data
+reproducibility and the all-encompassing applicability of the model\cite{nakamura2017ear}. For instance,
+MI-based EEG outputs must remain consistent for identical
+commands executed by the same subject, irrespective of variations in temporal
+and environmental contexts. Similarly, the precision in identifying MI-based
+EEG patterns ought to maintain uniformity across differing scenarios. This
+study not only scrutinizes the reproducibility and universal applicability
+of MI-based EEGs but also aims to significantly enhance the interpretative
+breadth and practical deployment of EEG data.
+
+
+\vspace{3mm}
+
+This investigation delves into the consistency of EEG data reproducibility across various days and among different subjects. The process
+of data gathering over extended periods could potentially compromise the uniformity
+of the data, as result of factors such as electrode displacement and
+intrinsic physiological variances. It is of paramount importance to evaluate
+the reproducibility to ascertain EEG's dependability in pragmatic scenarios,
+especially considering the impracticality of employing consumer-grade BCIs or the elimination of electrooculograms (EOG) in real-world
+applications. The primary objective of this assessment is to ascertain the steadfastness
+of MI-based EEG data and the universal applicability of the recognition
+models employed. Adopting this methodology could substantially enhance both
+the utility and dependability of EEG data for broader applications.
+
+
+\vspace{3mm}
+This investigation scrutinizes the efficacy of extant discrimination models
+when applied to novel environments, disparate subjects, and over extended
+durations. Predominant models often exhibit heightened accuracy solely in specific,
+controlled conditions, exemplified by the results seen in the BCI competition
+(as seen in Table \ref{tab: Comparison of existing data sets and the data sets used in this study}). The crux of this study is to validate the universality
+of these models by evaluating their adaptability to new, diverse datasets.
+Such validation is crucial for confirming the practical effectiveness of EEG-based
+systems in real-world scenarios. Consequently, this research offers
+innovative directions in both the analytical and practical application of
+EEG data. In contrast to traditional EEG research, which is primarily focused on
+idealized experimental conditions, this study pioneers in exploring the reproducibility
+of EEG data and the universal applicability of models within more realistic settings.
+This novel approach is anticipated to significantly bolster the utility and
+reliability of EEG technology in actual applications. Ultimately, this study
+carves a new path in EEG research, heralding an era of more grounded and practical
+applications. Our main contributions are as follows:
+\begin{itemize}
+    \vspace{1mm}
+    \item We investigated EEG consistency over time using a multi-day consumer-grade MI-EEG dataset including 25 subjects.
+    \vspace{3mm}
+    \item Through a comparison of EEG validation techniques (TDV, DDV, TV, SDTDV), we showed that using a portion of the test day data for model adaptation can yield higher accuracy than using only a pre-trained model. .
+    \vspace{3mm}
+    \item We confirmed the daily reproducibility of MI-EEG and verified the effectiveness of a generalized identification algorithm that can effectively classify individual EEG patterns.
+    \vspace{3mm}
+    \item We have pioneered a new approach to evaluating the effectiveness of MI-EEG systems in the real world, making it possible to translate this technology into assistive applications.
+    \vspace{3mm}
+    \item We made the source code public to improve the reproducibility and transparency of our research.
+\end{itemize}

@@ -1,0 +1,72 @@
+\section{Evaluation of the Proposed Verification Techniques}
+    \subsection{Performance evaluation metrics}
+    The performance of each model was evaluated by its accuracy, F1-score, and AUC-ROC \cite{sharma2023recent}. These scores are used to evaluate the performance of the classification
+    model. The term True Positive (TP) is used to describe the precise
+    identification of a specific condition or trait, while False Positive (FP) describes
+    the inaccurate identification of such a condition or trait. On the other
+    hand, True Negative (TN) is used to describe the precise identification of the
+    absence of a condition or trait, and False Negative (FN) indicates the
+    inaccurate identification of this absence \cite{sharma2023recent}. These four classifications
+    are fundamental in defining numerous performance measures.
+
+    \subsubsection{Accuracy}
+    Accuracy is the ratio of the number of correct predictions to the total number
+    of predictions. It can be calculated.
+    \begin{equation*}
+        Accuracy=\frac{TP+TN}{TP+TN+FP+FN}\,. \tag{1}
+    \label{equ:Acc}
+    \end{equation*}
+
+    \subsubsection{F1-score}
+    The F1-score is the harmonic mean of precision and recall. It can be calculated.
+    \begin{equation*}
+        F1\text{score}= \frac{2 \times TP}{FN + FP + 2 \times TP}\,. \tag{2}
+    \label{equ:F1}
+    \end{equation*}
+
+    \subsubsection{AUC}
+    Receiver operating characteristics (ROC) is a curve plotted between true positive rate and false-positive rate. AUC is the area under this curve \cite{kuremoto2018enhancing}.
+
+
+    \subsection{Performance Baseline}
+    In each validation phase, labels were generated randomly via a binomial distribution
+    and assessed using an evaluation index, comprising a precision of 0.5, an F1
+    score of 0.5, and an AUC of 0.5. This is to establish criteria for model
+    evaluation. Each model identifies motor recall (MI)-based 
+    EEG for the subject's left and right hands. It is possible to identify
+    models with poor performance when using randomly generated labels. Poor performance
+    is indicated when the MI-based EEG data for the subject's left and right hands
+    are captured inversely. For example, if the accuracy is 0.3 in the model-based
+    evaluation, the accuracy in the binomial distribution is 0.5. In this case, the
+    0.3 model captures the subject's left and right MI inversely. This is the
+    criterion for the evaluation criterion to capture the generality of the
+    model.
+    \subsection{Bayesian ANOVA for Comparative Model Evaluation}
+    A Bayesian analysis of variance (ANOVA)\cite{kruschke2010bayesian} is conducted, utilizing the mean
+    accuracy derived from four distinct tests. This approach facilitates a comparative
+    evaluation of the classification F1 scores across varying conditions. Such a
+    statistical method is instrumental in discerning significant performance
+    disparities among different models. Employing a variety of evaluation metrics
+    and thorough statistical analyses enables a comprehensive assessment of model
+    efficacy. Specifically, by scrutinizing F1 scores, one gains a profound
+    understanding of each model's merits and limitations. Notably, Bayesian
+    ANOVA is adept at pinpointing conditions that are conducive to enhanced
+    classification accuracy, thereby aiding in the refinement of models and the development
+    of more effective data collection protocols.
+
+    \subsection{FLIPPED-LABEL DATASET COMPARISON}
+    The labels are inverted when the model is trained on the MI-EEG of the
+    subject's left and right hand movements. The purpose of this flipped-label dataset conparison is to
+    compare the discrimination results of the generated model with those of the non-inverted
+    model. Inverting the labels means, for example, that if a subject has a
+    right-handed MI, he/she will be labeled with a left-handed MI. Once a
+    correctly discriminating model is generated, the discrimination rate should be
+    significantly reduced because the discrimination results are reversed when the
+    left and right labels are inverted in the training data. If the
+    identification rate is higher or the same as the baseline of the model, the method
+    in question is not correctly generating a discriminative model. This is
+    because the MI-EEG of the subject's left and right hand movements depends on
+    the subject's way of thinking, and we want to verify whether the subject's MI-EEG
+    is not causing the data to be unreproducible. In other words, we are trying to
+    verify whether the MI-EEG data of the subject is reproducible even on multiple
+    days, and whether the model is generalized.

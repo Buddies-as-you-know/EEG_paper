@@ -1,0 +1,32 @@
+
+\section{Discussion}
+    
+    The comprehensive analysis presented in the results offers several key insights into the effectiveness of different learning approaches for EEG-based model training. 
+    
+    First, it is evident that utilizing historical EEG data to pre-train models, as done in the TDV approach, leads to moderate performance improvements over a random baseline. This confirms the utility of leveraging the existing subject data to initialize model parameters before fine-tuning new unseen data. However, TDV is outperformed by approaches that incorporate same-day data.
+    
+    In particular, the DDV technique, which supplements pre-training data with a small portion of test-day data for fine-tuning, demonstrates superior overall performance. Across all days and metrics, DDV achieves higher scores compared to solely relying on historical data. This highlights the benefits of adaptivity by allowing models to fine-tune current test data characteristics. As a result, significant boosts in real-time EEG decoding accuracy can be attained.
+    
+    Interestingly, the results also showcase the viability of a purely test-day-based approach with the TV method. Despite lacking any historical data, TV displays competitive performance, even occasionally outperforming techniques like TDV that utilize past subject data. This indicates that for certain real-time applications, historical data may not be an absolute prerequisite, thereby enabling more streamlined deployments.
+    
+    Additionally, the analysis also sheds light on the utility of personalized model training. The SDTDV technique, which trains exclusively on individual subject history, largely keeps pace with more generalized approaches like TDV, in terms of accuracy and F1 scores. This underscores the importance of accounting for inter-subject variability in EEG patterns through individualized calibration. However, SDTDV does not definitively outperform other methods, suggesting the need for more research into personalized adaptive systems.
+    
+    
+    The variability in the performance of the assessed EEG analysis models (Fig. \ref{fig: Each evaluation for each validation}) further highlights the interaction effects between datasets and algorithms. Selecting the optimal approach is contingent on the task specifications and data characteristics. Adaptive methods like DDV could be preferential for applications requiring real-time EEG decoding under changing conditions. Meanwhile, robust generalized techniques like EEGInception may be better suited for offline analysis tasks.
+    
+    Overall, the findings strongly advocate for increased incorporation of adaptivity in EEG analysis systems, either via fine-tuning current data or reliance on test-day statistics. Pre-training on subject history still holds merit, but must be augmented with calibration on fresh same-day data to maximize decoding accuracies. There also remains promise in personalized adaptive systems that account for inter-subject variability. Furthermore, the optimal algorithm is dependent on the intended real-time or offline use case specifications.
+    
+    A key limitation of the current analysis is the reliance on a single publicly available dataset, restricting conclusion generalizability. Further validation on diverse private clinical and research EEG data repositories could strengthen these insights and provide greater confidence in the superiority of adaptive learning schemes. Additionally, more methodical hyperparameter optimization and neural architecture searches could help boost model performances. In the future, promising research directions include the development of unified adaptive frameworks that enable seamless integration of multiday historical and real-time daily data for optimized subject-specific EEG analysis.
+
+    
+    The T-SNE\cite{van2008visualizing} and UMAP\cite{sainburg2021parametric}(Fig. \ref{fig: T-SNE plot}, \ref{fig: UMAP plot}) visualizations offer insight into the model's ability to discriminate between subjects using EEG data across multiple days. A key observation is that when labels and days are encoded (right plots), some separation is visible between data points from different days. This indicates that the model has learned features related to day-specific variability in the EEG data.
+
+    However, in the label-only plots (left plots), the data points are largely mixed without clear separation between the classes. This suggests that the model struggles to extract discriminative features for identifying individuals, irrespective of the day. The lack of inter-subject variability encoding is a major weakness.
+    
+    A likely explanation is that due to fluctuations in EEG signals across days, the model primarily learns features associated with daily variability rather than subject-specific trait-based patterns. This is aligned with past research showing within-person EEG fluctuations across time.
+    
+    The analysis has significant implications regarding model optimization for EEG-based identification. For instance, the poor subject discrimination performance highlights the need for more reliable trait-based biomarkers that are consistent across sessions. Additionally, the prominence of day-specific patterns indicates that longitudinal calibration may be necessary through sequential fine-tuning approaches.
+    
+    The coverage limitations of SDTDV models trained on individual subject data likely contribute to the lack of a consistent view of the target feature space across days. Broader TDV or DDV approaches could help mitigate this issue. However, the possibility of divergence between the pretrained and test spaces remains a risk.
+    
+    In summary, the observations emphasize the complex interactions between the intra-subject longitudinal variability and inter-subject trait-based patterns in EEG signals. Enhancing model robustness likely requires a hybrid approach of extracting reliable identifying biomarkers while accounting for cyclical fluctuations through adaptive calibration. This could pave the path toward translating EEG-based biometrics from controlled scenarios to more practical free-living applications.

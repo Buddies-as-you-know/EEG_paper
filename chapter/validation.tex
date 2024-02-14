@@ -1,0 +1,53 @@
+\section{COMPARISON OF THE PROPOSED VERIFICATION TECHNIQUES}
+  
+    This study aimed to compare and contrast the performance of four different EEG
+    verification techniques, namely, tri-dataset verification (TDV), dual-dataset
+    verification (DDV), temporal verification (TV), and subject dependent tri-dataset
+    verification (SDTDV)(at see in Fig \ref{fig: COMPARISON OF THE PROPOSED VERIFICATION TECHNIQUES if day 5 is a test}). In the following sections, we delve into each technique,
+    delineate its unique methodology, and evaluate its efficacy. Additionally, as
+    mentioned earlier, the Random function was used to assign binary labels entirely
+    randomly, without using machine learning.
+    \subsection{TDV}
+    The TDV approach involves training a model on 4 days of a 5-day dataset for all
+    subjects. Pseudo-online validation is performed on the remaining 1-day
+    dataset as the test day. The primary goal of this process is to evaluate the
+    accuracy of the models classification performance on the test day by training
+    it on EEG data that are not from the test day. The EEG signals to be
+    discriminated against should be collected during the actual use of the
+    equipment, and a pre-trained model should ensure that the EEG signals can be
+    accurately classified in real time.
+
+    \subsection{DDV}
+    The DDV approach has the same 4-day pre-training period as TDV. However, with
+    DDV, the first 20\% of the test-day data are used for training. The
+    validation item envisioned by DDV is to adapt the pre-trained model to the
+    subject by performing additional training on the subjects data on the test
+    day, considering variations in headset impedance, environment, and the subjects
+    condition. If the validation results show high accuracy, it demonstrates the
+    importance of both prior EEG data acquisition and test-day EEG data for model
+    learning during the testing phase for real-time EEG identification. In
+    addition, for actual use, a few minutes of pre-training is required when
+    subjects use the EEG of left- and right-hand movements to generate commands.
+
+    \subsection{TV}
+    The TV approach does not use pre-training data for class identification but
+    trains on the first 20\% of the EEG data on the test day for each subject and
+    evaluates the remaining 80\%
+    of the dataset. Whereas TDV and DDV require pre-training models for class identification,
+    TV is a case of its negation, indicating that if the accuracy of TVs model is
+    high, it does not require pre-training like TDV and DDV, and only EEG data on
+    test day is sufficient for model training. This result is significant
+    because it simplifies the data collection process and reduces the time and
+    resources required for pre-training. On the other hand, it suggests that
+    generalizing such models using EEG data is very difficult.
+
+    \subsection{SDTDV}
+    The SDTDV approach validates 4 days of pre-training data and 1 day of test
+    data for each subject. Whereas TDV and DDV combine data from 25 subjects to
+    build a pre-training model, SDTDV uses only each subjects historical data
+    to construct a prior learning model. This study aims to
+    evaluate the impact of individual differences and measure whether the models
+    accuracy improves by training each subject separately. By comparing TDV and
+    SDTDV, it is possible to examine whether the EEG output of the subject is identical
+    to that of others. Moreover, this comparison can provide valuable insights into
+    the effectiveness of the subject specific training for EEG-based identification.

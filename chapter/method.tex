@@ -1,0 +1,97 @@
+
+
+\section{METHOD}
+\subsection{DATASET DESCRIPTION AND SUBJECT}
+This study used the extensive and publicly available MI-BCI EEG database, which
+consists of five sessions of EEG recordings from 25 participants(13 males
+and 12 females; age range, 20–24 years) over 2–3 days. Each session
+comprised 100 MI grasping trials with the left and right hands, lasting approximately
+7.5 s. Human data collection was approved by the Shanghai Second
+Rehabilitation Hospital Ethics Committee (approval No.: ECSHSRH 2018-0101)
+under the Declaration of Helsinki. Participants were instructed to imagine
+a grasping motion with their left and right hands, guided by visual and
+auditory cues. Dynamic MI tasks were recorded using 32 EEG electrodes with an
+impedance level of less than $20 k\Omega$ and a sampling frequency of 250 Hz
+\cite{ma2022large}. The data preprocessing steps include removing bad segments based on
+amplitude thresholding and visual inspection, band-pass filtering with a
+0.5--40 Hz finite impulse response filter, and baseline removal.
+\subsection{BASE MODEL}
+This study employed an end-to-end learning method for MI-based EEG signal
+classification. This method was chosen because it increases the systems robustness
+and can potentially eliminate outliers and other errors affected by the analyst.
+As classifiers, we employed EEG-Inception \cite{zhang2021eeg}, EEGNet \cite{lawhern2018eegnet}, and Schirrmeister
+et al.s \cite{schirrmeister2017deep} deep convolutional network (DevConv) models, which are capable
+of real-time discrimination with a limited number of electrodes. These models
+can be also efficiently trained with a smaller number of channels. As a
+baseline for the discriminations obtained with these learning methods, we also
+showed the results from assigning random labels to the binary discriminations
+for the input.
+
+\subsubsection{EEG-Inception}
+The EEG-Inception model is a convolutional neural network architecture that consists
+of multiple inception modules, which are designed to capture multi-scale and
+multi-level features from EEG signals. The inception module is composed of
+parallel convolutional layers with different filter sizes and pooling
+operations, followed by concatenation of their outputs. The EEG-Inception
+model also includes batch normalization, dropout, and global average pooling
+layers to improve the model's generalization and reduce overfitting. The model
+is trained using the cross-entropy loss function and the Adam optimizer. The
+proposed data augmentation method includes random cropping, time-shifting,
+and amplitude scaling of EEG signals to increase the diversity and size of
+the training dataset. The EEG-Inception model achieves state-of-the-art
+performance on two benchmark BCI datasets for MI classification.
+
+\subsubsection{EEGNet}
+The EEGNet architecture is a compact convolutional neural network (CNN)
+designed specifically for EEG-based BCI paradigms. It consists of two main components:
+a temporal convolutional block and a depth-wise separable convolutional
+block. The temporal convolutional block applies a one-dimensional
+convolutional filter to the input EEG signal along with the temporal axis, followed
+by batch normalization and nonlinearity. The depth-wise separable
+convolutional block applies a depth-wise convolutional filter to the output
+of the temporal block, followed by a pointwise convolutional filter, batch
+normalization, and a nonlinearity. The output of the depth-wise separable
+block is then passed through a global average pooling layer and a softmax
+layer for classification. EEGNet is designed to be a general-purpose architecture
+that can be applied to different EEG-based BCI paradigms and has demonstrated high accuracy while remaining compact.
+\subsubsection{DevConv}
+The ConvNets used in this study vary in the number of convolutional layers and
+other design choices, and can extract local, low-level features from the raw
+input and then increasingly more global and high-level features in deeper layers.
+The feature extraction process involves convolutions and nonlinearities, and
+the higher-level features are represented as compositions of lower-level features.
+The training of the ConvNets can involve trial-wise and cropped training
+strategies, and the EEG input can be represented in different ways depending
+on the architecture. Overall, ConvNets have been highly successful in many application
+areas, such as computer vision and speech recognition, often outperforming previous
+state-of-the-art methods.
+
+\subsubsection{DENOISING}
+We used raw data with noise removed because preprocessing of EEG signals is important to improve signal-to-noise ratio and classification accuracy. To remove the noise, bandpass filtering was performed from 0.5 to 40 Hz using a finite impulse response (FIR) filter. This removed the bad segments\cite{ma2022large}.
+
+\subsubsection{ROW DATA}
+We validated these models using raw EEG data. The reasons for using raw data are as follows:
+
+\begin{enumerate}
+  \item \textbf{Improved Accuracy} \\
+    Using raw EEG data, we can achieve high accuracy in classification tasks. For example, a study using a simple CNN classification method for MI-EEG through electrode pair signals achieved a high accuracy level of up to 98.61\% for specific electrode pairs\cite{lun2020simplified}.\\
+  
+  \item \textbf{Elimination of Preprocessing Steps} \\
+    Raw EEG data can be directly input into systems like CNN, eliminating the need for prior feature extraction or preprocessing. This simplifies the data processing pipeline and reduces computational complexity\cite{tibrewal2022classification}.\\
+  
+  \item \textbf{Improved Handling of High-Dimensional Data} \\
+    Deep learning models like CNNs are suitable for raw EEG data as they can process complex, nonlinear, and high-dimensional data\cite{tibrewal2022classification}.\\
+  
+  \item \textbf{Facilitating End-to-End Learning} \\
+    Using raw EEG data promotes end-to-end learning, which can enhance the performance of BCI systems\cite{tibrewal2022classification}.\\
+  
+  \item \textbf{Possibility for Noise Analysis} \\
+    Raw EEG data include all recorded trials and channels, including those with noise. This is beneficial for designing signal processing algorithms to detect, reject, or remove noise within EEG signals\cite{dreyer2023large}.\\
+  
+  \item \textbf{Improved Generalizability} \\
+    The utilization of raw EEG data to design cross-user BCI machine learning algorithms improves the generalizability of the models\cite{dreyer2023large}.\\
+  
+  \item \textbf{Understanding Signal Characteristics} \\
+    Using raw EEG data allows for the study of how EEG signal characteristics vary across different user profiles and MI tasks\cite{dreyer2023large}.\\
+\end{enumerate}
+We used raw data for these reasons.
